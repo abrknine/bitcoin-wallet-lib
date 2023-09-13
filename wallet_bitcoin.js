@@ -8,10 +8,10 @@
 
   // Maintain an array to store created or imported wallets
   const wallets = [];
-
+//  task1 
   // Function to create a new wallet
   const createWallet = ( walletname ,network = mainnet) => {
-    const passPhrase = new Mnemonic();
+    const passPhrase = new Mnemonic();      
     const xpriv = passPhrase.toHDPrivateKey(null, network);
     const wallet = {
       name:walletname,
@@ -29,8 +29,8 @@
 
 
 
-
-  // Function to import a wallet using a private key
+ //task 2--
+  // Function to import a wallet using a mnemonicphase
   const importWalletWithMnemonic= (mnemonicPhrase, network = mainnet) => {
 
     const xpriv = new Mnemonic(mnemonicPhrase).toHDPrivateKey(null, network);
@@ -48,14 +48,20 @@
     return wallet;
   };
 
+
+ // Task3--
   // Function to list all wallets
   const listWallets = () => {
     return wallets;
   };
 
+
+
+
+  //Task4--
   //function to interact with bitcoin blockchain using  blockcypher api  to get balance using adress(public key) of any wallet
   const TOKEN = process.env.TOKEN;
-  //const TOKEN = '5807bc4f7d15443fa88b1059e8f8a30d';
+  
 
 
   const getBitcoinBalance = async (address) => {
@@ -81,7 +87,7 @@
     }
   };
 
-
+  //Task 5
   const getBitcoinTransactions = async (address) => {
     try {
       const response = await axios.get(
@@ -103,6 +109,9 @@
     } 
   };
 
+
+
+//Task 6--
   const generateUnusedBitcoinAddress = (wallet) => {
     const xpub = new bitcore.HDPublicKey(wallet.xpub);
     const addressIndex = wallet.addresses.length;
